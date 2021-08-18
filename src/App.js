@@ -9,17 +9,14 @@ import SearchBar from './search';
 
 
 function App() {
-
   const [characters, setCharacters] = useState([]);
   const [query, setQuery] = useState("");
-  var data = [];
-  
+
   useEffect(() => {
     async function componentDidMount() {
       let result = await axios.get("https://jsonplaceholder.typicode.com/users");
-      await new Promise(x => setTimeout(x, 500));
+      await new Promise(x => setTimeout(x, 10));
       setCharacters(result.data);
-      data = result.data;
     }
     componentDidMount();
   }, []);
@@ -35,41 +32,39 @@ function App() {
     var filteredCharacters=[];
 
     if (!query) {
-      return data;
+      return characters;
     }
     characters.forEach( character => 
       {if (character.name.toLowerCase().includes(query)) {
       filteredCharacters.push(character)
     }})
-    if (filteredCharacters.length===0) filteredCharacters = data;
     return filteredCharacters;
   };
 
   const handleSearch = () => {
     const filteredCharacters = filterCharacters(characters, query);
-    console.log(filteredCharacters);
-
+    /*console.log(filteredCharacters);*/
     setCharacters(filteredCharacters);
   }
 
   const updateQuery = (e) => {
-    console.log(e.target.value);
+    /*console.log(e.target.value);*/
     setQuery( e.target.value );
     handleSearch();
   }
 
   const handleSubmit = (character) => {
       setCharacters(characters.concat(character));
-      
   }
-
+  
   return (
       <div className="container">
-          <h1>User List App</h1>
+          <h1>User Search App</h1>
           <br></br>
           <SearchBar 
             updateQuery = {updateQuery}
-            handleSearch ={handleSearch}/>
+            handleSearch ={handleSearch}
+            updateQuery = {updateQuery}/>
           <br></br>
           {characters.length > 0 ? (
             <div>

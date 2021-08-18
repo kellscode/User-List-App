@@ -2,16 +2,16 @@ import React, {Component} from 'react'
 import './App.css';
 
 const SearchBar = (props) => (
-    <form>
+    <form >
         <div class="form-group">
         <input
+            class="form-control form-control-lg"
             type="text"
             id="header-search"
-            placeholder="Search users"
+            placeholder="Search users by name"
             onChange={props.updateQuery}
             name="keyword" 
         />
-        <button type="submit" class="btn btn-primary mr-3 btn-sm" onClick={() => props.handleSearch()}>Search</button>
         </div>
     </form>
 );
