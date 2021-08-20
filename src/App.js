@@ -57,6 +57,7 @@ function App() {
 
   const handleSubmit = (character) => {
       setCharacters(characters.concat(character));
+      setData(data.concat(character));
   }
   
   return (
