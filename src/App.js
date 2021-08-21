@@ -33,7 +33,7 @@ function App() {
   const filterCharacters = (characters, query) => {
     var filteredCharacters=[];
 
-    if (!query || query==="") {
+    if (!query || query==="" || query===" " || query==="  ") {
       return data;
     }
     data.forEach( character => 
